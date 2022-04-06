@@ -1,0 +1,16 @@
+<h1>Register</h1>
+<div class="form-container">
+    <form #register="ngForm" name="regiserForm" (ngSubmit)="onSubmit(register)">
+        <label for="username">Username</label>
+        <input type="text" name="username" ngModel>
+        <label for="fullname">Full Name</label>
+        <input type="text" name="fullname" ngModel>
+        <label for="password">Password</label>
+        <input type="password" name="password" ngModel>
+        <label for="password">Repeat Password</label>
+        <input type="password" name="repeatPassword" ngModel>
+        <label for="email">Email</label>
+        <input type="email" name="email" ngModel>
+        <button>Submit</button>
+    </form>
+</div>
