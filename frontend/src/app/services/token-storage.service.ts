@@ -34,14 +34,15 @@ export class TokenStorageService {
   }
   public getUser(): any {
     if (storedUser._id) return storedUser;
-    const user = window.sessionStorage.getItem(USER_KEY);
+    const user = window.localStorage.getItem(USER_KEY);
     if (user) {
+      this.loadFromStorage();
       return JSON.parse(user);
     }
     return {};
   }
   public loadFromStorage(): void {
-    const user = window.sessionStorage.getItem(USER_KEY);
+    const user = window.localStorage.getItem(USER_KEY);
     const token = window.localStorage.getItem(TOKEN_KEY);
     if (user) {
       storedToken = token || '';
