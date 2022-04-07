@@ -12,6 +12,7 @@ let storedToken: string = '';
 export class TokenStorageService {
 
   constructor() { }
+  isAuthenticated: boolean = this.getUser()._id ? true : false;
   public saveToken(token: string): void {
     window.localStorage.removeItem(TOKEN_KEY);
     window.localStorage.setItem(TOKEN_KEY, token);
@@ -21,12 +22,14 @@ export class TokenStorageService {
     window.localStorage.removeItem(USER_KEY);
     window.localStorage.setItem(USER_KEY, JSON.stringify(user));
     storedUser = { ...user };
+    this.isAuthenticated = true;
   }
   public signOut(): void {
     window.localStorage.removeItem(USER_KEY);
     window.localStorage.removeItem(TOKEN_KEY);
     storedToken = '';
     storedUser = {};
+    this.isAuthenticated = false;
   }
   public getToken(): string | null {
     if (storedToken) return storedToken;
@@ -47,6 +50,7 @@ export class TokenStorageService {
     if (user) {
       storedToken = token || '';
       storedUser = JSON.parse(user);
+      this.isAuthenticated = true
     }
   }
 }
