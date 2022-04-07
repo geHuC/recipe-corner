@@ -1,0 +1,25 @@
+<p>create works!</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="" formArrayName="steps">
+        <p *ngFor="let step of steps().controls; let i=index" [formGroupName]="i">
+            Quanity:
+            <input type="text" formControlName="step">
+            <br>
+            Ingredient:
+            <textarea type="text" formControlName="description"></textarea>
+        </p>
+    <button type="button" (click)="addStep()" class="btn btn-primary">Add Step</button>
+    </div>
+    <div class="" formArrayName="ingredients">
+        <p *ngFor="let step of ingredients().controls; let i=index" [formGroupName]="i">
+            Quanity:
+            <input type="text" formControlName="qty">
+            <br>
+            Ingredient:
+            <input type="text" formControlName="type">
+        </p>
+        <button type="button" (click)="addIngredient()" class="btn btn-primary">Add Ingredient</button>
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+</form>
+{{this.form.value | json}}
