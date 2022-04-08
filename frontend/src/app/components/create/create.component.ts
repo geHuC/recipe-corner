@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms'
+import { SubmissionService } from 'src/app/services/submission.service';
 
 @Component({
   selector: 'app-create',
@@ -7,10 +8,17 @@ import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms'
   styleUrls: ['./create.component.css']
 })
 export class CreateComponent implements OnInit {
-  step:number = 0;
-  constructor(private fb: FormBuilder) { }
+  step: number = 0;
+  imageURL: string = '';
+  constructor(private fb: FormBuilder, private ss: SubmissionService) { }
 
   form: FormGroup = this.fb.group({
+    image: [null],
+    title: '',
+    description: '',
+    cooktime: '',
+    preptime: '',
+    portions: '',
     ingredients: this.fb.array([]),
     steps: this.fb.array([])
   });
@@ -32,16 +40,31 @@ export class CreateComponent implements OnInit {
   newIngredient(): FormGroup {
     return this.fb.group({
       qty: '',
-      type: ''
+      product: ''
     })
   }
   newStep(): FormGroup {
     return this.fb.group({
       step: (++this.step).toString(),
-      description: ''
+      instruction: ''
     })
   }
+  showPreview(event: any): void {
+    const file = (event.target as HTMLInputElement).files![0];
+    this.form.patchValue({
+      image: file
+    });
+    this.form.get('image')!.updateValueAndValidity()
+    // File Preview
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imageURL = reader.result as string;
+    }
+    reader.readAsDataURL(file)
+  }
   onSubmit() {
-    console.log(this.form.value);
+    this.ss.submit(this.form).subscribe(data => {
+      console.log(data);
+    })
   }
 }

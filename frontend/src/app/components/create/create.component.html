@@ -1,14 +1,26 @@
 <p>create works!</p>
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<form [formGroup]="form" (ngSubmit)="onSubmit()" #fomr>
+    <input type="file" accept="image/*" (change)="showPreview($event)" enctype="multipart/form-data"/>
+    <!-- Image Preview -->
+    <div class="imagePreview" *ngIf="imageURL && imageURL !== ''">
+        <img [src]="imageURL" [alt]="form.value.name">
+    </div>
+    Title: <input type="text" formControlName="title">
+    <br>
+    Description: <textarea formControlName="description"></textarea>
+    <div class="times">
+        <span>preptime <input type="number" formControlName="preptime"></span>
+        <span>cooktime <input type="number" formControlName="cooktime"></span>
+        <span>portions <input type="number" formControlName="portions"></span>
+    </div>
     <div class="" formArrayName="steps">
         <p *ngFor="let step of steps().controls; let i=index" [formGroupName]="i">
-            Quanity:
-            <input type="text" formControlName="step">
+            Step {{i+1}}:
             <br>
-            Ingredient:
-            <textarea type="text" formControlName="description"></textarea>
+            Instruction:
+            <textarea type="text" formControlName="instruction"></textarea>
         </p>
-    <button type="button" (click)="addStep()" class="btn btn-primary">Add Step</button>
+        <button type="button" (click)="addStep()" class="btn btn-primary">Add Step</button>
     </div>
     <div class="" formArrayName="ingredients">
         <p *ngFor="let step of ingredients().controls; let i=index" [formGroupName]="i">
@@ -16,7 +28,7 @@
             <input type="text" formControlName="qty">
             <br>
             Ingredient:
-            <input type="text" formControlName="type">
+            <input type="text" formControlName="product">
         </p>
         <button type="button" (click)="addIngredient()" class="btn btn-primary">Add Ingredient</button>
     </div>
