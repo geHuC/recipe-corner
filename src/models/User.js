@@ -11,10 +11,7 @@ const userSchema = new mongoose.Schema({
         validate: [/^[a-zA-Z0-9_]+$/, 'Username can contain only alphanumeric characters and undescore "_"']
     },
     fullname: {
-        type: String,
-        required: [true, 'Full name is required'],
-        minlength: [5, 'Full name must be at least 5 characters long'],
-        validate: [/^[a-zA-Z0-9 ]+$/, 'Full name can contain only letters']
+        type: String
     },
     bio: {
         type: String,

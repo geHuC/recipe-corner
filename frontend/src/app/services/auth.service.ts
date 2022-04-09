@@ -15,8 +15,8 @@ export class AuthService {
   login(username: string, password: string): Observable<any> {
     return this.http.post(`${URL}/login`, { username, password }).pipe(shareReplay());
   }
-  register(username: string, email: string, password: string, repeatPassword: string, fullname: string): Observable<any> {
-    return this.http.post(`${URL}/register`, { username, email, password, repeatPassword, fullname }).pipe(shareReplay());
+  register(username: string, email: string, password: string): Observable<any> {
+    return this.http.post(`${URL}/register`, { username, email, password }).pipe(shareReplay());
   }
   logout(): void {
     this.tokenStorage.signOut();
