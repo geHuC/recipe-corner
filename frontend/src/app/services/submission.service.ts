@@ -19,7 +19,7 @@ export class SubmissionService {
     return this.http.get(`${URL}/feed`);
   }
 
-  getSingle(author: string, slug: string) {
+  getSingle(author: string, slug: string): Observable<any> {
     return this.http.get(`${URL}/${author}/recipe/${slug}`);
   }
 
@@ -33,7 +33,7 @@ export class SubmissionService {
     formData.append('portions', payload.get('portions')!.value);
     formData.append('ingredients', JSON.stringify(payload.get('ingredients')!.value));
     formData.append('steps', JSON.stringify(payload.get('steps')!.value));
-    return this.http.post(`${URL}/`, payload);
+    return this.http.post(`${URL}/`, formData);
   }
 
   delete(id: string): Observable<any> {
@@ -47,7 +47,5 @@ export class SubmissionService {
   unfavourite(id: string): Observable<any> {
     return this.http.get(`${URL}/unfavourite/${id}`);
   }
-
-
 
 }
