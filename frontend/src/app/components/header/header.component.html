@@ -1,1 +1,14 @@
 <p>header works!</p>
+<span><a [routerLink]="['/']">Home</a></span>
+<form #search="ngForm" (ngSubmit)="onSearch(search)">
+    <input type="text" placeholder="Search" name="search-term" ngModel>
+    <button>Search</button>
+</form>
+<div *ngIf="!this.storage.isAuthenticated" class="links">
+    <a routerLink="login">Login</a>
+    <a routerLink="register">Register</a>
+</div>
+<div *ngIf="this.storage.isAuthenticated" class="links">
+    <a routerLink="create">Create</a>
+    <button (click)="logout()">LogOut!</button>
+</div>
