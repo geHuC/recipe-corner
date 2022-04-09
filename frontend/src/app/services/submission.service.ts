@@ -23,6 +23,10 @@ export class SubmissionService {
     return this.http.get(`${URL}/${author}/recipe/${slug}`);
   }
 
+  search(term: string): Observable<any> {
+    return this.http.get(`${URL}/search?q=${term}`);
+  }
+
   submit(payload: any): Observable<any> {
     const formData: any = new FormData();
     formData.append('image', payload.get('image')!.value);
