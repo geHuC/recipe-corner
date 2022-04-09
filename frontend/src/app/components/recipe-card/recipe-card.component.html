@@ -1,0 +1,5 @@
+<a class="rc" [routerLink]="recipeUrl" [state]="recipe">
+    <!-- <img [src]="recipe.thumbUrl" /> -->
+    <p>{{recipe.title}}</p>
+    <span><img [src]="recipe.author.avatar"></span><span>{{recipe.author.username}}</span>
+</a>
