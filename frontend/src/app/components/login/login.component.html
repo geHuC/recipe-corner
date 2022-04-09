@@ -2,9 +2,11 @@
 <div class="form-container">
     <form #login="ngForm" name="loginForm" (ngSubmit)="onSubmit(login)">
         <label for="username">Username</label>
-        <input type="text" name="username" ngModel>
+        <input type="text" name="username" ngModel required #name="ngModel">
+        <div *ngIf="name.invalid && (name.dirty||name.touched)">username is required</div>
         <label for="username">password</label>
-        <input type="password" name="password" ngModel>
-        <button>Submit</button>
+        <input type="password" name="password" ngModel required #password="ngModel">
+        <div *ngIf="password.invalid && (password.dirty||password.touched)">password is required</div>
+        <button [disabled]="login.invalid">Submit</button>
     </form>
 </div>
