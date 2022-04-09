@@ -18,10 +18,9 @@ router.post('/login', async (req, res) => {
 //Registration
 router.post('/register', async (req, res) => {
     //Change datafileds accordingly
-    const { email, username, password, repeatPassword, fullname } = req.body;
-
+    const { email, username, password } = req.body;
     try {
-        let user = await auth.register({ email, username, password, repeatPassword, fullname });
+        let user = await auth.register({ email, username, password });
         let token = await auth.login({ email, username, password });
         return res.status(201).json(token);
     } catch (err) {
