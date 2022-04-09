@@ -18,7 +18,11 @@ export class AuthService {
   register(username: string, email: string, password: string, repeatPassword: string, fullname: string): Observable<any> {
     return this.http.post(`${URL}/register`, { username, email, password, repeatPassword, fullname }).pipe(shareReplay());
   }
+  logout(): void {
+    this.tokenStorage.signOut();
+  }
   isLogged(): boolean {
     return this.tokenStorage.getUser()._id ? true : false;
   }
+  isAuthenticated: boolean = this.isLogged();
 }
