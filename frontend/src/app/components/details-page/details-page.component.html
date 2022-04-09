@@ -1,0 +1,6 @@
+<!-- <img [src]="recipe.thumbUrl" /> -->
+<div class="container" *ngIf="recipe">
+    <p>{{recipe.title}}</p>
+    <span><img [src]="recipe.author.avatar"></span><span>{{recipe.author.username}}</span>
+    <p>{{recipe.description}}</p>
+</div>
