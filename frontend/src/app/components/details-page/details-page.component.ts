@@ -22,14 +22,11 @@ export class DetailsPageComponent implements OnInit {
     let state = history.state;
     if (state._id) {
       this.recipe = state;
-      console.log('State: ', this.recipe);
-      
     } else {
       this.ss.getSingle(this.author, this.slug).subscribe(
-        data => {this.recipe = data; console.log(data);
-        }
+        data => this.recipe = data
+        
       )
-      console.log('From db');
     }
   }
 
