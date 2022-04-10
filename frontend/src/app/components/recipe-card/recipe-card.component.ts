@@ -9,7 +9,6 @@ import { IRecipeMini } from 'src/app/interfaces/irecipe-mini';
 export class RecipeCardComponent implements OnInit {
   @Input() recipe!: IRecipeMini;
   recipeUrl:string = '';
-  stringify:string = JSON.stringify(this.recipe);
 
   constructor() { }
 

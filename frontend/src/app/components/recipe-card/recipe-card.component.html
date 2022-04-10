@@ -1,5 +1,51 @@
-<a class="rc" [routerLink]="recipeUrl" [state]="recipe">
-    <!-- <img [src]="recipe.thumbUrl" /> -->
-    <p>{{recipe.title}}</p>
-    <span><img [src]="recipe.author.avatar"></span><span>{{recipe.author.username}}</span>
-</a>
+<div class="recipe-card">
+    <a class="card-link" [routerLink]="recipeUrl" [state]="recipe"></a>
+    <div class="img-container">
+        <!-- <img [src]="recipe.thumbUrl" /> -->
+        <img src="/assets/fish.jpg" />
+    </div>
+    <div class="info">
+        <p class="title">{{recipe.title}}</p>
+        <div class="info-details">
+            <div class="quad">
+                <svg class="svg-icon" style="width:50%;height:50%" viewBox="0 0 24 24">
+                    <path
+                        d="M12 20C16.4 20 20 16.4 20 12S16.4 4 12 4 4 7.6 4 12 7.6 20 12 20M12 2C17.5 2 22 6.5 22 12S17.5 22 12 22C6.5 22 2 17.5 2 12C2 6.5 6.5 2 12 2M17 13.9L16.3 15.2L11 12.3V7H12.5V11.4L17 13.9Z" />
+                </svg>
+                <span>{{recipe.preptime}}"</span>
+                <span>PREP</span>
+            </div>
+            <div class="quad">
+                <svg class="svg-icon" style="width:50%;height:50%" viewBox="0 0 24 24">
+                    <path d="M23.5 17L18.5 22L15 18.5L16.5 17L18.5 19L22 15.5L23.5 17M13.1 19.9C12.7 20 12.4 20 12 20C7.6 20 4 16.4 4 12S7.6 4 12 4 20 7.6 20 12C20 12.4 20 12.7 19.9 13.1C20.6 13.2 21.2 13.4 21.8 13.7C21.9 13.1 22 12.6 22 12C22 6.5 17.5 2 12 2S2 6.5 2 12C2 17.5 6.5 22 12 22C12.6 22 13.2 21.9 13.7 21.8C13.4 21.3 13.2 20.6 13.1 19.9M15.6 14.1L12.5 12.3V7H11V13L14.5 15.1C14.8 14.7 15.2 14.4 15.6 14.1Z" />
+                </svg>
+                <span>{{recipe.preptime + recipe.cooktime}}"</span>
+                <span>TOTAL</span>
+            </div>
+            <div class="quad">
+                <svg class="svg-icon" style="width:50%;height:50%" viewBox="0 0 24 24">
+                    <path
+                        d="M4 13C2.89 13 2 13.89 2 15V19C2 20.11 2.89 21 4 21H8C9.11 21 10 20.11 10 19V15C10 13.89 9.11 13 8 13M8.2 14.5L9.26 15.55L5.27 19.5L2.74 16.95L3.81 15.9L5.28 17.39M4 3C2.89 3 2 3.89 2 5V9C2 10.11 2.89 11 4 11H8C9.11 11 10 10.11 10 9V5C10 3.89 9.11 3 8 3M4 5H8V9H4M12 5H22V7H12M12 19V17H22V19M12 11H22V13H12Z" />
+                </svg>
+                <span>{{recipe.ingredients.length}}</span>
+                <span>INGREDIENTS</span>
+            </div>
+            <div class="quad">
+                <svg class="svg-icon" style="width:50%;height:50%" viewBox="0 0 24 24">
+                    <path
+                        d="M12,5A3.5,3.5 0 0,0 8.5,8.5A3.5,3.5 0 0,0 12,12A3.5,3.5 0 0,0 15.5,8.5A3.5,3.5 0 0,0 12,5M12,7A1.5,1.5 0 0,1 13.5,8.5A1.5,1.5 0 0,1 12,10A1.5,1.5 0 0,1 10.5,8.5A1.5,1.5 0 0,1 12,7M5.5,8A2.5,2.5 0 0,0 3,10.5C3,11.44 3.53,12.25 4.29,12.68C4.65,12.88 5.06,13 5.5,13C5.94,13 6.35,12.88 6.71,12.68C7.08,12.47 7.39,12.17 7.62,11.81C6.89,10.86 6.5,9.7 6.5,8.5C6.5,8.41 6.5,8.31 6.5,8.22C6.2,8.08 5.86,8 5.5,8M18.5,8C18.14,8 17.8,8.08 17.5,8.22C17.5,8.31 17.5,8.41 17.5,8.5C17.5,9.7 17.11,10.86 16.38,11.81C16.5,12 16.63,12.15 16.78,12.3C16.94,12.45 17.1,12.58 17.29,12.68C17.65,12.88 18.06,13 18.5,13C18.94,13 19.35,12.88 19.71,12.68C20.47,12.25 21,11.44 21,10.5A2.5,2.5 0 0,0 18.5,8M12,14C9.66,14 5,15.17 5,17.5V19H19V17.5C19,15.17 14.34,14 12,14M4.71,14.55C2.78,14.78 0,15.76 0,17.5V19H3V17.07C3,16.06 3.69,15.22 4.71,14.55M19.29,14.55C20.31,15.22 21,16.06 21,17.07V19H24V17.5C24,15.76 21.22,14.78 19.29,14.55M12,16C13.53,16 15.24,16.5 16.23,17H7.77C8.76,16.5 10.47,16 12,16Z" />
+                </svg>
+                <span>{{recipe.portions}}</span>
+                <span>PORTIONS</span>
+            </div>
+            <div class="user-details">
+                <div class="avatar-container">
+                    <!-- <img [src]="recipe.author.avatar"> -->
+                    <img src="/assets/noAvatar.png" />
+                </div>
+                <span class="user-link"><a class="user-link"
+                        [routerLink]="['user',recipe.author.username]">{{recipe.author.username}}</a></span>
+            </div>
+        </div>
+    </div>
+</div>
