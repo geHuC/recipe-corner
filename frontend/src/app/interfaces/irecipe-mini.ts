@@ -8,8 +8,11 @@ export interface IRecipeMini {
     steps: any;
     description: string;
     favourites: any;
+    preptime: number;
+    cooktime: number;
+    portions: string;
     createdAt: string;
     updatedAt: string;
-    slug:string;
+    slug: string;
     __v: number;
 }
