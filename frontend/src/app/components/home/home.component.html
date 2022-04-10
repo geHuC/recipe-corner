@@ -1,7 +1,5 @@
-<p>home works!</p>
-{{this.all | json}}
-<div class="container">
-    <div class="card"  *ngFor="let one of all">
+<div class="recent-container">
+    <div class="card" *ngFor="let one of all">
         <app-recipe-card [recipe]="one"></app-recipe-card>
     </div>
 </div>
