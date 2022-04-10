@@ -1,5 +1,49 @@
-form{
+.form-container {
+    display: flex;
+    justify-content: center;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    color: var(--clr-text-main);
+    position: relative;
+}
+
+.form-input {
+    border-radius: 0;
+    border-style: none;
+    background-color: var(--clr-input);
+    color: var(--clr-text-main);
+    height: 2em;
+    padding-left: .5em;
+}
+
+.form-input:focus{
+    outline: none;
+    border-bottom: 1px dotted var(--clr-text-main);
+}
+
+.alert-box {
+    position: absolute;
+    color: var(--clr-alert);
+    top: 100%;
+    font-size: 0.7rem;
+    margin-top: 0.3em;
+}
+
+.form-input.valid {
+    border-left: 3px solid var(--clr-valid);
+}
+
+.form-input.invalid {
+    border-left: 3px solid var(--clr-alert);
+}
+
+
+form {
     display: flex;
     flex-direction: column;
     max-width: 40em;
+    gap: 2em;
 }
