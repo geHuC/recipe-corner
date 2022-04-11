@@ -12,7 +12,7 @@
         <div *ngIf="this.storage.isAuthenticated" class="links">
             <a routerLink="feed">Feed</a>
             <a routerLink="create">Create</a>
-            <button (click)="logout()">LogOut!</button>
+            <app-user-dropdown></app-user-dropdown>
         </div>
     </div>
 </div>
