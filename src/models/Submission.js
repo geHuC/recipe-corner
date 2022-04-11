@@ -42,6 +42,17 @@ const schema = new mongoose.Schema({
         type: Number,
         default: 0,
     },
+    preptime: {
+        type: Number,
+        default: 0,
+    },
+    cooktime: {
+        type: Number,
+        default: 0,
+    },
+    portions: {
+        type: String,
+    },
     description: {
         type: String,
         required: [true, 'Description is a reqired field'],
