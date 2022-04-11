@@ -1,15 +1,96 @@
-.header{
-    background-color: red;
+.header {
     width: 100vw;
     height: 3em;
+    background-color: var(--clr-navbar-background);
+    box-shadow: 0px 3px 3px -3px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 9998;
+    padding-top: .5rem;
+}
+
+.header-items {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    margin: auto;
+    max-width: 1200px;
+}
+
+.search {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    height: 2rem;
+    flex-grow: 1;
+    position: relative;
+}
+
+.search-input {
+    border: none;
+    background: var(--clr-navbar-search-input);
+    height: 2rem;
+    width: 100%;
+    padding-left: 1rem;
+    color: var(--clr-navbar-search-text);
+    outline: none;
+    position: relative;
+}
+
+.search-input::placeholder {
+    color: var(--color-text-light);
+}
+
+.search-button {
+    position: absolute;
+    height: 2rem;
+    right: 0;
+    z-index: 9999;
+    cursor: pointer;
+    background-color: var(--clr-accent);
+    border: 0;
+    color: var(--clr-input);
+}
+
+.links {
+    display: flex;
+    justify-content: center;
+    gap: 0.5em;
+}
+
+.links a {
+    text-decoration: none;
+    color: var(--clr-text-light);
+    font-weight: bold;
+}
+
+.links a:hover {
+    color: var(--clr-accent);
+    text-decoration: underline;
+}
+
+.login-link {
+    font-weight: 200 !important;
+}
+
+.logo {
+    padding-left: .5rem;
+    height: 2rem;
+    border-left: 2px solid var(--clr-logo);
+    border-top: 2px solid var(--clr-logo);
     display: flex;
     align-items: center;
-    justify-content: space-between;
 }
-.header-items{
-    display: flex;
-    justify-content: space-between;
-    max-width: 1200px;
-    width: 100%;
-    margin: auto;
+
+.logo>a {
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: none;
+    cursor: pointer;
+    color: var(--clr-logo);
+    font-weight: 900;
+    transition: all 150ms ease-in;
+}
+
+.logo>a:hover {
+    transform: scale(1.05);
 }
