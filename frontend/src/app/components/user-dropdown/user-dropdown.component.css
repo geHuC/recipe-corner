@@ -1,0 +1,113 @@
+.user-dropdown {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    height: 3em;
+}
+
+.user-dropdown>a {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.user-dropdown:hover {
+    border-bottom: 2px solid var(--clr-accent);
+}
+
+.user-dropdown-menu {
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+    position: absolute;
+    top: 2em;
+    transform: translateX(-80%);
+    cursor: initial;
+    width: 10rem;
+    background: var(--clr-light);
+    color: var(--clr-text-light);
+    padding: 0;
+}
+
+.user-dropdown-menu a {
+    text-decoration: none !important;
+    color: var(--clr-text-light);
+}
+
+.user-dropdown-menu p {
+    margin: 0;
+    width: 100%;
+}
+
+.user-dropdown-menu svg {
+    fill: var(--clr-text-light);
+    transition: all 150ms ease-in;
+}
+
+
+.user-dropdown-menu p:hover {
+    color: var(--clr-accent);
+    font-weight: bold;
+}
+.user-dropdown-menu p:hover .gear {
+    transform: rotate(60deg);
+    fill: var(--clr-accent);
+}
+.user-dropdown-menu p:hover .star {
+    transform: scale(1.1);
+    fill: var(--clr-accent);
+}
+.user-dropdown-menu-item.logout:hover {
+    color: tomato !important;
+    font-weight: bold;
+}
+
+.user-dropdown-menu-item.logout:hover svg {
+    fill: tomato;
+    transform: translateX(15%);
+}
+
+.user-dropdown-avatar {
+    height: 2rem;
+    width: 2rem;
+}
+
+.dropdown-menu-username {
+    margin: 0;
+    border-bottom: 1px dotted gray;
+    text-align: right;
+    padding: 0.5rem;
+    color: var(--clr-black);
+    font-weight: 900;
+}
+
+.user-dropdown-avatar img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.user-dropdown-menu-item {
+    padding: 0.75rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: baseline;
+    align-items: center;
+
+}
+
+.user-dropdown-menu-item svg {
+    margin-right: 0.5rem;
+}
+
+.user-dropdown-menu-item:hover {
+    background: var(--clr-logo-text);
+    text-decoration: none;
+}
