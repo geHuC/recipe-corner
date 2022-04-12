@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms'
+import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms'
 import { SubmissionService } from 'src/app/services/submission.service';
 
 @Component({
@@ -13,12 +13,12 @@ export class CreateComponent implements OnInit {
   constructor(private fb: FormBuilder, private ss: SubmissionService) { }
 
   form: FormGroup = this.fb.group({
-    image: [null],
-    title: '',
-    description: '',
-    cooktime: '',
-    preptime: '',
-    portions: '',
+    image: [null, {validators:[Validators.required]}],
+    title: ['', { validators: [Validators.required, Validators.minLength(10)], updateOn: 'blur' }],
+    description: ['', { validators: [Validators.required, Validators.minLength(10)], updateOn: 'blur' }],
+    cooktime: ['', { validators: [Validators.required], updateOn: 'blur' }],
+    preptime: ['', { validators: [Validators.required], updateOn: 'blur' }],
+    portions: ['', { validators: [Validators.required], updateOn: 'blur' }],
     ingredients: this.fb.array([]),
     steps: this.fb.array([])
   });
@@ -40,13 +40,13 @@ export class CreateComponent implements OnInit {
   newIngredient(): FormGroup {
     return this.fb.group({
       qty: '',
-      product: ''
+      product: ['', { validators: [Validators.required], updateOn: 'blur' }],
     })
   }
   newStep(): FormGroup {
     return this.fb.group({
       step: (++this.step).toString(),
-      instruction: ''
+      instruction: ['', { validators: [Validators.required], updateOn: 'blur' }],
     })
   }
   showPreview(event: any): void {
