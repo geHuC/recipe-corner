@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreateComponent } from './components/create/create.component';
 import { DetailsPageComponent } from './components/details-page/details-page.component';
+import { FeedPageComponent } from './components/feed-page/feed-page.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [GuestGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [GuestGuard] },
   { path: 'create', component: CreateComponent, canActivate: [AuthGuard] },
+  { path: 'feed', component: FeedPageComponent, canActivate: [AuthGuard] },
   { path: 'search', component: SearchPageComponent },
   { path: 'recipe/:author/:slug', component: DetailsPageComponent },
   { path: '**', component: NotFoundComponent }
