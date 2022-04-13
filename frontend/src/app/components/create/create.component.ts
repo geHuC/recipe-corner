@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms'
 import { SubmissionService } from 'src/app/services/submission.service';
 
@@ -8,46 +8,41 @@ import { SubmissionService } from 'src/app/services/submission.service';
   styleUrls: ['./create.component.css']
 })
 export class CreateComponent implements OnInit {
-  step: number = 0;
   imageURL: string = '';
+  @ViewChild('imgBtn') imgBtn!: ElementRef;
   constructor(private fb: FormBuilder, private ss: SubmissionService) { }
 
   form: FormGroup = this.fb.group({
-    image: [null, {validators:[Validators.required]}],
+    image: [null, { validators: [Validators.required] }],
     title: ['', { validators: [Validators.required, Validators.minLength(10)], updateOn: 'blur' }],
+    instructions: ['', { validators: [Validators.required, Validators.minLength(10), Validators.maxLength(500)], updateOn: 'blur' }],
+    category: ['', { validators: [Validators.required], updateOn: 'blur' }],
     description: ['', { validators: [Validators.required, Validators.minLength(10)], updateOn: 'blur' }],
     cooktime: ['', { validators: [Validators.required], updateOn: 'blur' }],
     preptime: ['', { validators: [Validators.required], updateOn: 'blur' }],
     portions: ['', { validators: [Validators.required], updateOn: 'blur' }],
     ingredients: this.fb.array([]),
-    steps: this.fb.array([])
   });
 
   ngOnInit(): void {
   }
+  
   ingredients(): FormArray {
     return this.form.get("ingredients") as FormArray;
-  }
-  steps(): FormArray {
-    return this.form.get("steps") as FormArray
   }
   addIngredient() {
     this.ingredients().push(this.newIngredient());
   }
-  addStep() {
-    this.steps().push(this.newStep());
-  }
+
   newIngredient(): FormGroup {
     return this.fb.group({
       qty: '',
       product: ['', { validators: [Validators.required], updateOn: 'blur' }],
     })
   }
-  newStep(): FormGroup {
-    return this.fb.group({
-      step: (++this.step).toString(),
-      instruction: ['', { validators: [Validators.required], updateOn: 'blur' }],
-    })
+
+  selectImg(): void {
+    this.imgBtn.nativeElement.click();
   }
   showPreview(event: any): void {
     const file = (event.target as HTMLInputElement).files![0];

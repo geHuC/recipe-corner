@@ -1,37 +1,48 @@
-<p>create works!</p>
-<form [formGroup]="form" (ngSubmit)="onSubmit()" #fomr>
-    <input type="file" accept="image/*" (change)="showPreview($event)" enctype="multipart/form-data"/>
-    <!-- Image Preview -->
-    <div class="imagePreview" *ngIf="imageURL && imageURL !== ''">
-        <img [src]="imageURL" [alt]="form.value.name">
-    </div>
-    Title: <input type="text" formControlName="title">
-    <br>
-    Description: <textarea formControlName="description"></textarea>
-    <div class="times">
-        <span>preptime <input type="number" formControlName="preptime"></span>
-        <span>cooktime <input type="number" formControlName="cooktime"></span>
-        <span>portions <input type="number" formControlName="portions"></span>
-    </div>
-    <div class="" formArrayName="steps">
-        <p *ngFor="let step of steps().controls; let i=index" [formGroupName]="i">
-            Step {{i+1}}:
-            <br>
-            Instruction:
-            <textarea type="text" formControlName="instruction"></textarea>
-        </p>
-        <button type="button" (click)="addStep()" class="btn btn-primary">Add Step</button>
-    </div>
-    <div class="" formArrayName="ingredients">
-        <p *ngFor="let step of ingredients().controls; let i=index" [formGroupName]="i">
-            Quanity:
-            <input type="text" formControlName="qty">
-            <br>
-            Ingredient:
-            <input type="text" formControlName="product">
-        </p>
-        <button type="button" (click)="addIngredient()" class="btn btn-primary">Add Ingredient</button>
-    </div>
-    <button type="submit" class="btn btn-success">Submit</button>
-</form>
+<div class="create-container">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" #fomr>
+        <div class="image-controls">
+            <input #imgBtn class="img-input" type="file" accept="image/png, image/jpeg, image/jpg" (change)="showPreview($event)"
+                enctype="multipart/form-data" />
+            <div class="imagePreview" *ngIf="imageURL && imageURL !== ''">
+                <img [src]="imageURL" [alt]="form.value.name">
+            </div>
+            <div class="imagePreview" *ngIf="!imageURL" (click)="selectImg()">
+                <svg xmlns="http://www.w3.org/2000/svg" height="5em" viewBox="0 0 24 24" width="5em" fill="#000000">
+                    <path d="M0 0h24v24H0V0z" fill="none" />
+                    <path
+                        d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-4.86 8.86l-3 3.87L9 13.14 6 17h12l-3.86-5.14z" />
+                </svg>
+            </div>
+        </div>
+        <div class="input-group">
+            <label for="title">Title:</label>
+            <input type="text" name="title" formControlName="title"></div>
+        <div class="input-group">
+            <label for="description">Description: </label>
+            <textarea name="description" formControlName="description"></textarea></div>
+        <div class="times">
+            <label for="cooktime">Cooking time:</label>
+            <input name="cooktime" type="number" formControlName="cooktime">
+            <label for="preptime">Preparation time:</label>
+            <input name="preptime" type="number" formControlName="preptime">
+            <label for="portions">Number of servings:</label>
+            <input name="portions" type="number" formControlName="portions">
+        </div>
+        <div class="" formArrayName="ingredients">
+            <p *ngFor="let step of ingredients().controls; let i=index" [formGroupName]="i">
+                Quanity:
+                <input type="text" formControlName="qty">
+                <br>
+                Ingredient:
+                <input type="text" formControlName="product">
+            </p>
+            <button type="button" (click)="addIngredient()" class="btn btn-primary">Add Ingredient</button>
+        </div>
+        <div class="input-group">
+            <textarea formControlName="instructions" name="instructions" id="instructions" cols="30"
+                rows="10"></textarea>
+        </div>
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</div>
 {{this.form.value | json}}
