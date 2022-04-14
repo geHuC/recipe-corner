@@ -20,6 +20,7 @@ import { DetailsPageComponent } from './components/details-page/details-page.com
 import { SearchPageComponent } from './components/search-page/search-page.component';
 import { UserDropdownComponent } from './components/user-dropdown/user-dropdown.component';
 import { FeedPageComponent } from './components/feed-page/feed-page.component';
+import { TextboxCounterComponent } from './components/textbox-counter/textbox-counter.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { FeedPageComponent } from './components/feed-page/feed-page.component';
     SearchPageComponent,
     UserDropdownComponent,
     FeedPageComponent,
+    TextboxCounterComponent,
   ],
   imports: [
     BrowserModule,

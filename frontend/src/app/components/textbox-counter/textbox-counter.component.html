@@ -1,0 +1,4 @@
+<div class="input-group" [formGroup]="form">
+    <textarea formControlName="{{control}}" [value]="value" (input)="onValueChange($event)" maxlength="{{maxLength}}" [placeholder]="placeholderValue"></textarea>
+    <span>{{counter}}</span>
+</div>

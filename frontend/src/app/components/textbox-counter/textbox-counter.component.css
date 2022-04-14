@@ -1,0 +1,17 @@
+textarea{
+    width: 100%;
+    height: 100%;
+    resize: none;
+    color:var(--color-black)
+}
+textarea::placeholder{
+    color: var(--color-text-light);
+}
+span{
+    float: right;
+    font-size: 0.75rem;
+}
+.input-group{
+    width: 100%;
+    height: 90%;
+}
