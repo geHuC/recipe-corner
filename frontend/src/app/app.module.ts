@@ -21,6 +21,7 @@ import { SearchPageComponent } from './components/search-page/search-page.compon
 import { UserDropdownComponent } from './components/user-dropdown/user-dropdown.component';
 import { FeedPageComponent } from './components/feed-page/feed-page.component';
 import { TextboxCounterComponent } from './components/textbox-counter/textbox-counter.component';
+import { FavouriteBtnComponent } from './components/favourite-btn/favourite-btn.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { TextboxCounterComponent } from './components/textbox-counter/textbox-co
     UserDropdownComponent,
     FeedPageComponent,
     TextboxCounterComponent,
+    FavouriteBtnComponent,
   ],
   imports: [
     BrowserModule,
