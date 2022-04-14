@@ -62,7 +62,7 @@ router.get('/feed', isUser, async (req, res) => {
     }
 })
 
-router.get('/tags/:tag', async (req, res) => {
+router.get('/category/:tag', async (req, res) => {
     let sortParams = {};
     req.query.sortBy.toLowerCase() === 'oldest' ? sortParams.createdAt = 'asc' : sortParams.createdAt = 'desc';
     try {
@@ -79,9 +79,7 @@ router.get('/search', async (req, res) => {
     let searchParams = {};
     let sortParams = { createdAt: 'asc' };
     const regex = new RegExp(req.query.q, 'i');
-    console.log(req.query);
-    searchParams['$or'] = [{ title: { $regex: regex } }];
-    // searchParams['$or'] = [{ title: { $regex: regex } }, { tags: { $regex: regex } }];
+    searchParams['$or'] = [{ title: { $regex: regex } }, { category: { $regex: regex } }];
     //req.query.sort.toLowerCase() === 'oldest' ? sortParams.createdAt = 'asc' : sortParams.createdAt = 'desc';
     try {
         const submissions = await submissionService.searchAll(searchParams, sortParams);
@@ -125,7 +123,6 @@ router.post('/', isUser, upload.single('image'), async (req, res) => {
         let count = await submissionService.getCount();
         req.body.author = req.user._id;
         req.body.slug = slugify(req.body.title, { lower: true, strict: true, trim: true }) + `-${Date.now().toString().slice(7, 12)}${count + 1}`;
-        req.body.steps = JSON.parse(req.body.steps);
         req.body.ingredients = JSON.parse(req.body.ingredients);
 
         const thumbnail = await imageThumbnail(req.file.buffer, { height: 300 });
