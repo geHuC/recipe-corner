@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms'
+import { FormBuilder, FormGroup, FormArray, FormControl, Validators, AbstractControl } from '@angular/forms'
 import { SubmissionService } from 'src/app/services/submission.service';
 
 @Component({
@@ -9,6 +9,10 @@ import { SubmissionService } from 'src/app/services/submission.service';
 })
 export class CreateComponent implements OnInit {
   imageURL: string = '';
+  imgError: any = {};
+  submitted: boolean = false;
+  serverErrorMsg: any = {};
+
   @ViewChild('imgBtn') imgBtn!: ElementRef;
   constructor(private fb: FormBuilder, private ss: SubmissionService) { }
 
@@ -25,11 +29,21 @@ export class CreateComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    this.addIngredient();
   }
-  
+
+  get f(): { [key: string]: AbstractControl } {
+    return this.form.controls;
+  }
+
+  classes(field: string) {
+    return { 'invalid': (this.f[field].errors && (this.f[field].touched || this.submitted)) || (this.serverErrorMsg[field]), 'valid': this.f[field].valid }
+  }
+
   ingredients(): FormArray {
     return this.form.get("ingredients") as FormArray;
   }
+
   addIngredient() {
     this.ingredients().push(this.newIngredient());
   }
@@ -45,7 +59,16 @@ export class CreateComponent implements OnInit {
     this.imgBtn.nativeElement.click();
   }
   showPreview(event: any): void {
+    this.imgError = {};
     const file = (event.target as HTMLInputElement).files![0];
+    if (file.type !== 'image/png' && file.type !== 'image/jpeg' && file.type !== 'image/jpg') {
+      this.imgError = { type: 'Image must be a PNG, JPG or JPG' };
+      return;
+    }
+    if (file.size > 3145728) {
+      this.imgError = { size: 'Image cannot be larger that 3MB' };
+      return;
+    }
     this.form.patchValue({
       image: file
     });
@@ -57,9 +80,23 @@ export class CreateComponent implements OnInit {
     }
     reader.readAsDataURL(file)
   }
+  removeIngredient(index: number): void {
+    this.ingredients().removeAt(index);
+  }
   onSubmit() {
-    this.ss.submit(this.form).subscribe(data => {
-      console.log(data);
+    this.submitted = true;
+    if (this.form.invalid || this.imgError.size || this.imgError.type) {
+      return;
+    }
+    this.form.disable();
+    this.ss.submit(this.form).subscribe({
+      next: data => {
+        console.log(data);
+      },
+      error: err => {
+        console.log(err);
+        alert('Something went wrong on our side, please try again later');
+      }
     })
   }
 }

@@ -35,8 +35,9 @@ export class SubmissionService {
     formData.append('cooktime', payload.get('cooktime')!.value);
     formData.append('preptime', payload.get('preptime')!.value);
     formData.append('portions', payload.get('portions')!.value);
+    formData.append('instructions', payload.get('instructions')!.value);
+    formData.append('category', payload.get('category')!.value);
     formData.append('ingredients', JSON.stringify(payload.get('ingredients')!.value));
-    formData.append('steps', JSON.stringify(payload.get('steps')!.value));
     return this.http.post(`${URL}/`, formData);
   }
 

@@ -1,48 +1,160 @@
 <div class="create-container">
+    <h1>Submit recipe</h1>
     <form [formGroup]="form" (ngSubmit)="onSubmit()" #fomr>
-        <div class="image-controls">
-            <input #imgBtn class="img-input" type="file" accept="image/png, image/jpeg, image/jpg" (change)="showPreview($event)"
-                enctype="multipart/form-data" />
-            <div class="imagePreview" *ngIf="imageURL && imageURL !== ''">
-                <img [src]="imageURL" [alt]="form.value.name">
+        <div class="top">
+            <div class="top-right">
+                <div class="input-group">
+                    <label for="title">Title:</label>
+                    <input class="form-input" [ngClass]="classes('title')" type="text" name="title"
+                        formControlName="title">
+                    <div class="alert-box" *ngIf="f['title'].errors && (f['title'].touched || submitted)">
+                        <div *ngIf="f['title'].errors['required']">
+                            Title is required.
+                        </div>
+                        <div *ngIf="f['title'].errors['minlength']">
+                            Title must be at least 10 characters long.
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="category">Category:</label>
+                    <select [ngClass]="classes('category')" class="form-input" type="text" name="category"
+                        formControlName="category">
+                        <option value="chiken">Chicken</option>
+                        <option value="turkey">Turkey</option>
+                        <option value="duck">Duck</option>
+                        <option value="beef">Beef</option>
+                        <option value="veal">Veal</option>
+                        <option value="pork">Pork</option>
+                        <option value="lamb">Lamb</option>
+                        <option value="game">Game</option>
+                        <option value="baked-goods">Baked goods</option>
+                        <option value="desserts">Desserts</option>
+                        <option value="vegetarian">Vegetarian</option>
+                        <option value="vegan">Vegan</option>
+                    </select>
+                    <div class="alert-box" *ngIf="f['category'].errors && (f['category'].touched || submitted)">
+                        <div *ngIf="f['category'].errors['required']">
+                            Category is required.
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group description">
+                    <label for="description">Description:</label>
+                    <app-textbox-counter [form]="form" [maxLength]="350"
+                        [placeholderValue]="'Enter a short description of why it\'s the best recipe'"
+                        [control]="'description'">
+                    </app-textbox-counter>
+                    <div class="alert-box" *ngIf="f['description'].errors && (f['description'].touched || submitted)">
+                        <div *ngIf="f['description'].errors['required']">
+                            Description is required.
+                        </div>
+                        <div *ngIf="f['description'].errors['minlength']">
+                            Description must be at least 10 characters long.
+                        </div>
+                    </div>
+                </div>
+                <div class="times">
+                    <div class="input-group-times">
+                        <label for="preptime">Preparation time:</label>
+                        <input [ngClass]="classes('preptime')" class="form-input" name="preptime" type="number"
+                            formControlName="preptime" placeholder="25"> min.
+                        <div class="alert-box" *ngIf="f['preptime'].errors && (f['preptime'].touched || submitted)">
+                            <div *ngIf="f['preptime'].errors['required']">
+                                Preparation time is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group-times">
+                        <label for="cooktime">Cooking time:</label>
+                        <input [ngClass]="classes('cooktime')" class="form-input" name="cooktime" type="number"
+                            formControlName="cooktime" placeholder="15"> min.
+                        <div class="alert-box" *ngIf="f['cooktime'].errors && (f['cooktime'].touched || submitted)">
+                            <div *ngIf="f['cooktime'].errors['required']">
+                                Cooking time is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group-times">
+                        <label for="portions">Number of servings:</label>
+                        <input [ngClass]="classes('portions')" class="form-input" name="portions" type="text"
+                            formControlName="portions" placeholder="4-5">
+                        <div class="alert-box" *ngIf="f['portions'].errors && (f['portions'].touched || submitted)">
+                            <div *ngIf="f['portions'].errors['required']">
+                                Number of servings is required.
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="imagePreview" *ngIf="!imageURL" (click)="selectImg()">
-                <svg xmlns="http://www.w3.org/2000/svg" height="5em" viewBox="0 0 24 24" width="5em" fill="#000000">
-                    <path d="M0 0h24v24H0V0z" fill="none" />
-                    <path
-                        d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-4.86 8.86l-3 3.87L9 13.14 6 17h12l-3.86-5.14z" />
-                </svg>
+            <div class="image-controls">
+                <input #imgBtn class="img-input" type="file" accept="image/png, image/jpeg, image/jpg"
+                    (change)="showPreview($event)" enctype="multipart/form-data" />
+                <div class="imagePreview" [ngClass]="{'invalid':imgError.type || imgError.size}"
+                    *ngIf="imageURL && imageURL !== ''" (click)="selectImg()">
+                    <img [src]="imageURL" [alt]="form.value.name">
+                </div>
+                <div class="imagePreview" [ngClass]="{'invalid':imgError.type || imgError.size || submitted}"
+                    *ngIf="!imageURL" (click)="selectImg()">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="5em" viewBox="0 0 24 24" width="5em" fill="#000000">
+                        <path d="M0 0h24v24H0V0z" fill="none" />
+                        <path
+                            d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-4.86 8.86l-3 3.87L9 13.14 6 17h12l-3.86-5.14z" />
+                    </svg>
+                    <p>Add image</p>
+                </div>
+                <div class="alert-box" *ngIf="f['image'].errors && (f['image'].touched || submitted)">
+                    <div *ngIf="f['image'].errors['required']">
+                        Image of servings is required.
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="input-group">
-            <label for="title">Title:</label>
-            <input type="text" name="title" formControlName="title"></div>
-        <div class="input-group">
-            <label for="description">Description: </label>
-            <textarea name="description" formControlName="description"></textarea></div>
-        <div class="times">
-            <label for="cooktime">Cooking time:</label>
-            <input name="cooktime" type="number" formControlName="cooktime">
-            <label for="preptime">Preparation time:</label>
-            <input name="preptime" type="number" formControlName="preptime">
-            <label for="portions">Number of servings:</label>
-            <input name="portions" type="number" formControlName="portions">
-        </div>
-        <div class="" formArrayName="ingredients">
-            <p *ngFor="let step of ingredients().controls; let i=index" [formGroupName]="i">
-                Quanity:
-                <input type="text" formControlName="qty">
+        <div class="bottom">
+            <div class="ingredients" formArrayName="ingredients">
+                <span>Ingredients:</span>
+                <span class="alert-box-ing" *ngIf="f['ingredients'].invalid && (f['ingredients'].touched || submitted)">
+                    Ingredients is required.
+                </span>
                 <br>
-                Ingredient:
-                <input type="text" formControlName="product">
-            </p>
-            <button type="button" (click)="addIngredient()" class="btn btn-primary">Add Ingredient</button>
+                <div *ngFor="let step of ingredients().controls; let i=index" [formGroupName]="i"
+                    class="ingredient-group">
+                    <input class="form-input" name="qty" type="text" formControlName="qty" placeholder="50ml">
+                    <input class="form-input" name="product" type="text" formControlName="product" placeholder="Milk">
+                    <button type="button" class="removeIng" (click)="removeIngredient(i)">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 24 24" width="1.5em"
+                            fill="#000000">
+                            <path d="M0 0h24v24H0V0z" fill="none" />
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11H7v-2h10v2z" />
+                        </svg></button>
+                </div>
+                <div class="add-btn-container">
+                    <button type="button" (click)="addIngredient()" class="add-btn">Add
+                        <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 24 24" width="1.5em"
+                            fill="#000000">
+                            <path d="M0 0h24v24H0V0z" fill="none" />
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z" />
+                        </svg></button>
+                </div>
+            </div>
+            <div class="instructions">
+                <span>Instructions:</span>
+                <app-textbox-counter [form]="form" [maxLength]="1000" [placeholderValue]="'Enter instructions here'"
+                    control="instructions"></app-textbox-counter>
+                <div class="alert-box" *ngIf="f['instructions'].errors && (f['instructions'].touched || submitted)">
+                    <div *ngIf="f['instructions'].errors['required']">
+                        Instructions are required.
+                    </div>
+                    <div *ngIf="f['instructions'].errors['minlength']">
+                        Instructions must be at least 10 characters long.
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="input-group">
-            <textarea formControlName="instructions" name="instructions" id="instructions" cols="30"
-                rows="10"></textarea>
+        <div class="submit-container">
+            <button type="submit" class="submit-btn">Submit</button>
         </div>
-        <button type="submit" class="btn btn-success">Submit</button>
     </form>
 </div>
-{{this.form.value | json}}
