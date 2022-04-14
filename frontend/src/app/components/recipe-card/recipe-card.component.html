@@ -39,12 +39,15 @@
                 <span>PORTIONS</span>
             </div>
             <div class="user-details">
-                <div class="avatar-container">
-                    <!-- <img [src]="recipe.author.avatar"> -->
-                    <img src="/assets/noAvatar.png" />
+                <div class="yad">
+                    <div class="avatar-container">
+                        <!-- <img [src]="recipe.author.avatar"> -->
+                        <img src="/assets/noAvatar.png" />
+                    </div>
+                    <span class="user-link"><a class="user-link"
+                            [routerLink]="['user',recipe.author.username]">{{recipe.author.username}}</a></span>
+                            <span class="fav"><app-favourite-btn [recipe]="recipe"></app-favourite-btn></span>
                 </div>
-                <span class="user-link"><a class="user-link"
-                        [routerLink]="['user',recipe.author.username]">{{recipe.author.username}}</a></span>
             </div>
         </div>
     </div>

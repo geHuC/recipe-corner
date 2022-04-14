@@ -90,14 +90,9 @@
 
 .user-details {
     grid-column: span 2;
-    display: flex;
-    padding: .5em;
-    gap: .5em;
-    font-size: 0.8rem;
-    width: 100%;
-    padding-top: .8rem;
-    padding-left: .7rem;
     background-color: var(--clr-overlay);
+    padding: 0.5em;
+    padding-top: 0.8em;
 }
 
 .user-link {
@@ -105,4 +100,13 @@
     color: var(--clr-overlay-text);
     font-family: 'Lato', sans-serif;
     font-weight: bold;
+}
+
+.yad{
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+.fav{
+    width: 100%;
 }
