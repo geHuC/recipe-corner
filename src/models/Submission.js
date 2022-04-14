@@ -10,6 +10,10 @@ const schema = new mongoose.Schema({
         type: String,
         required: [true, 'Image is reqired'],
     },
+    category: {
+        type: String,
+        required: [true, 'Category is reqired'],
+    },
     thumbUrl: {
         type: String,
         required: [true, 'Image is reqired'],
@@ -21,22 +25,16 @@ const schema = new mongoose.Schema({
             },
             product: {
                 type: String,
-                minlength: [2, 'A step must be at least 2 characters long'],
-                maxlength: [350, 'A step cannot be longer than 350 characters']
+                minlength: [2, 'A product must be at least 2 characters long'],
+                maxlength: [50, 'A product cannot be longer than 50 characters']
             }
         }]
     },
-    steps: {
-        type: [{
-            step: {
-                type: Number
-            },
-            instruction: {
-                type: String,
-                minlength: [2, 'A step must be at least 2 characters long'],
-                maxlength: [350, 'A step cannot be longer than 350 characters']
-            }
-        }]
+    instructions: {
+        type: String,
+        required: [true, 'Instructions is a reqired field'],
+        minlength: [8, 'Instructions must be at least 8 characters long'],
+        maxlength: [1000, 'Instructions cannot be longer than 1000 characters']
     },
     views: {
         type: Number,
