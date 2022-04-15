@@ -5,6 +5,9 @@
     box-sizing: border-box;
 }
 
+html {
+    overflow-y: scroll;
+}
 body {
     margin: 0;
     padding: 0;
@@ -41,6 +44,67 @@ body {
     --clr-light: white;
     --card-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
 }
+@media(prefers-color-scheme: dark) {
+    :root {
+      --color-bg: hsl(218, 15.4%, 10.2%);
+      --color-logo: #17953d;
+      --color-accent: hsl(152, 100%, 31%);
+      --color-text-light: rgb(173, 184, 201);
+      --color-logo-text: #f6f6f6;
+      --color-navbar-background: hsl(218, 15.4%, 10.2%);
+      --color-navbar-search-input: #6e6e6e;
+      --color-navbar-search-text: #e4fdec;
+      --color-white: hsl(218, 15.4%, 10.2%);
+      --color-black: white;
+      --color-light: rgb(66, 73, 87);
+      --card-shadow: rgba(255, 255, 255, 0.15) 2px 2px 5px 2px, rgba(255, 255, 255, 0.05) 1px 1px 1px 1px;
+    }
+  }
+  
+  @media(prefers-color-scheme: light) {
+    :root {
+      --color-bg: #f5f5f5;
+      --color-logo: #17953d;
+      --color-accent: #17953d;
+      --color-text-light: #505050;
+      --color-logo-text: #f6f6f6;
+      --color-navbar-background: #fff;
+      --color-navbar-search-input: #e2e2e2;
+      --color-navbar-search-text: #1a1a1a;
+      --color-white: white;
+      --color-black: black;
+      --color-light: white;
+      --card-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+    }
+  }
+  /* [color-scheme="dark"]{
+    --color-bg: var(--bkg2-dark);
+    --color-logo: #17953d;
+    --color-accent: var(--accent1-dark);
+    --color-text-light: var(--text-dark);
+    --color-logo-text: #f6f6f6;
+    --color-navbar-background: var(--bkg1-dark);
+    --color-navbar-search-input: #6e6e6e;
+    --color-navbar-search-text: #e4fdec;
+    --color-white: var(--bkg1-dark);
+    --color-black: white;
+    --color-light: rgb(66, 73, 87);
+    --card-shadow: rgba(255, 255, 255, 0.15) 2px 2px 5px 2px, rgba(255, 255, 255, 0.05) 1px 1px 1px 1px;
+  }
+  [color-scheme="light"]{
+    --color-bg: #f5f5f5;
+    --color-logo: #17953d;
+    --color-accent: #17953d;
+    --color-text-light: #505050;
+    --color-logo-text: #f6f6f6;
+    --color-navbar-background: #fff;
+    --color-navbar-search-input: #e2e2e2;
+    --color-navbar-search-text: #1a1a1a;
+    --color-white: white;
+    --color-black: black;
+    --color-light: white;
+    --card-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+  } */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
