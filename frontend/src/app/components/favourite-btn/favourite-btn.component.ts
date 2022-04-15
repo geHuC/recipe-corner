@@ -14,21 +14,22 @@ export class FavouriteBtnComponent implements OnInit {
   @Input() recipe!: IRecipeMini;
 
   user: any = {};
-  isAuth: boolean = false;
   hasFavourited: boolean = false;
 
   constructor(private storage: TokenStorageService, private ss: SubmissionService, private router: Router) { }
 
   ngOnInit(): void {
-    if (this.storage.isAuthenticated) {
-      this.isAuth = true;
+    if (this.isAuth) {
       this.user = this.storage.getUser();
       this.checkFav();
     }
   }
+  get isAuth(): boolean {
+    return this.storage.isAuthenticated;
+  }
   checkFav(): void {
     if (this.recipe.favourites.some((x: any) => x === this.user._id)) {
-      this.hasFavourited = true
+      this.hasFavourited = true;
     }
   }
   favourite(): void {
@@ -51,5 +52,7 @@ export class FavouriteBtnComponent implements OnInit {
       error: e => console.log(e)
     })
   }
-
+  clickHandler(): void {
+    this.hasFavourited && this.isAuth ? this.unfavourite() : this.favourite();
+  }
 }

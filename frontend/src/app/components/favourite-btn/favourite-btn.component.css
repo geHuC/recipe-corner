@@ -1,7 +1,25 @@
 svg{
-    cursor: pointer;
-    fill:white;
     width: 1.5em;
     height: 1.5em;
-    float:right;
+    transition: transform 150ms ease-in;
+}
+.fav-btn{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: small;
+}
+.fav-btn:hover svg{
+    transform: scale(1.2) rotate(72deg);
+    fill: var(--clr-accent);
+}
+.fav-btn:hover svg.favourited{
+    transform: scale(0.8) rotate(72deg);
+    fill: tomato;
+}
+.fav-btn:hover{
+    color: var(--clr-accent)
+}
+.fav-btn.favourited:hover {
+    color: tomato;
 }
