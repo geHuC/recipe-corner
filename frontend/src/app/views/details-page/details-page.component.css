@@ -98,9 +98,9 @@ h3 {
 
 .title {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     padding-top: 1em;
-    gap: 3em;
+    gap: 1em;
     border-bottom: 1px dotted var(--clr-text-light);
 }
 

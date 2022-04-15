@@ -33,6 +33,7 @@
             <div *ngIf="!isAuthor" class="favourites-btn">
                 <app-favourite-btn [recipe]="recipe" [small]="false"></app-favourite-btn>
             </div>
+            <app-author-controls *ngIf="isAuthor" [recipe]="recipe"></app-author-controls>
         </div>
         <div class="category">
             Category: <a [routerLink]="['/category',recipe.category]">{{recipe.category}}</a>
