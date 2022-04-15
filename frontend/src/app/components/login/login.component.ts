@@ -8,24 +8,27 @@ import { TokenStorageService } from 'src/app/services/token-storage.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
-  loginFailed = false;
-  erroMessage = '';
+export class LoginComponent {
+  submitted: boolean = false;
+  serverError: boolean = false;
   constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private router: Router) { }
 
-  ngOnInit(): void {
-  }
   onSubmit(login: any): void {
+    this.submitted = true;
+    this.serverError = false;
+    if (login.invalid) return;
     const { username, password } = login.form.value;
-    this.authService.login(username, password).subscribe(
-      data => {
+    this.authService.login(username, password).subscribe({
+      next: data => {
         this.tokenStorage.saveToken(data.token);
         this.tokenStorage.saveUser(data.user);
         this.router.navigate(['..'])
       },
-      err => {
+      error: err => {
         console.log(err);
+        this.serverError = true;
       }
+    }
     )
   }
 

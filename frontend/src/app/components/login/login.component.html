@@ -1,12 +1,22 @@
-<h1>Login</h1>
 <div class="form-container">
+    <h1>Login</h1>
     <form #login="ngForm" name="loginForm" (ngSubmit)="onSubmit(login)">
-        <label for="username">Username</label>
-        <input type="text" name="username" ngModel required #name="ngModel">
-        <div *ngIf="name.invalid && (name.dirty||name.touched)">username is required</div>
-        <label for="username">password</label>
-        <input type="password" name="password" ngModel required #password="ngModel">
-        <div *ngIf="password.invalid && (password.dirty||password.touched)">password is required</div>
-        <button [disabled]="login.invalid">Submit</button>
+        <div class="input-group">
+            <label for="username">Username</label>
+            <input class="form-input" type="text" name="username" ngModel required #name="ngModel">
+            <div class="alert-box" *ngIf="name.invalid && (name.dirty||name.touched || submitted)">Username is required
+            </div>
+            <div *ngIf="serverError">Username or password invalid!</div>
+        </div>
+        <div class="input-group">
+            <label for="username">Password</label>
+            <input class="form-input" type="password" name="password" ngModel required #password="ngModel">
+            <div class="alert-box" *ngIf="password.invalid && (password.dirty||password.touched || submitted)">Password
+                is
+                required
+            </div>
+            <div *ngIf="serverError">Username or password invalid!</div>
+        </div>
+        <button>Submit</button>
     </form>
 </div>
