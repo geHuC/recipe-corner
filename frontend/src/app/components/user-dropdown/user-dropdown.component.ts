@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 
@@ -8,17 +9,24 @@ import { TokenStorageService } from 'src/app/services/token-storage.service';
   styleUrls: ['./user-dropdown.component.css']
 })
 export class UserDropdownComponent implements OnInit {
-  user: any = {};
+  user: any;
   show: boolean = false;
-  constructor(private storage: TokenStorageService, private auth: AuthService) { }
+  avatar: string = '';
+  constructor(public storage: TokenStorageService, private auth: AuthService) { }
 
+  subscription!: Subscription;
   ngOnInit(): void {
     this.user = this.storage.getUser();
+    this.avatar = this.user.avatar;
+    this.subscription = this.storage.avatarChange.subscribe(data => data ? this.avatar = data : null);
   }
-  logout():void{
+  logout(): void {
     this.auth.logout();
   }
   toggleMenu(): void {
     this.show = !this.show;
+  }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

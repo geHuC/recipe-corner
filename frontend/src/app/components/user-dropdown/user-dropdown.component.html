@@ -1,7 +1,7 @@
 <div class="user-dropdown" (mouseenter)="toggleMenu()" (mouseleave)="toggleMenu()">
     <a [routerLink]="['profile', user.username]"> </a>
     <div class="user-dropdown-avatar">
-        <img [src]="user.avatar" alt="avatar" />
+        <img [src]="avatar" alt="avatar" />
     </div>
     <ul *ngIf="show" class="user-dropdown-menu">
         <a [routerLink]="['profile',user.username]">
