@@ -8,8 +8,7 @@ import { IRecipeMini } from 'src/app/interfaces/irecipe-mini';
 })
 export class RecipeCardComponent implements OnInit {
   @Input() recipe!: IRecipeMini;
-  recipeUrl:string = '';
-
+  recipeUrl: string = '';
   constructor() { }
 
   ngOnInit(): void {
