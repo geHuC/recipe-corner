@@ -1,5 +1,13 @@
-<div class="recent-container">
-    <div class="card" *ngFor="let one of all">
-        <app-recipe-card [recipe]="one"></app-recipe-card>
+
+<div class="home-wrapper">
+    <div class="home-sort-bar">
+        <span>Order by:</span>
+        <button (click)="newestBtnHandler()" class="home-sort-button" [ngClass]="{'selected':sortType == 'newest'}">Newest</button>
+        <button (click)="popularBtnHandler()" class="home-sort-button" [ngClass]="{'selected':sortType == 'popular'}">Popular</button>
+    </div>
+    <div class="recent-container">
+        <div class="card" *ngFor="let one of all">
+            <app-recipe-card [recipe]="one"></app-recipe-card>
+        </div>
     </div>
 </div>
