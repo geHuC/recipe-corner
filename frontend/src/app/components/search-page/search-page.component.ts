@@ -11,6 +11,7 @@ import { SubmissionService } from 'src/app/services/submission.service';
 })
 export class SearchPageComponent implements OnInit {
   recipes: IRecipeMini[] = [];
+  
   constructor(private route: ActivatedRoute, private ss: SubmissionService) { }
 
   ngOnInit(): void {

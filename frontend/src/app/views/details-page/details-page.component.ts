@@ -25,6 +25,10 @@ export class DetailsPageComponent implements OnInit {
     let state = history.state;
     if (state._id) {
       this.recipe = state;
+      this.ss.submitView(this.recipe._id).subscribe({
+        next: data => null,
+        error: e => console.log(e)
+      })
     } else {
       this.ss.getSingle(this.author, this.slug).subscribe({
         next: data => this.recipe = data,
