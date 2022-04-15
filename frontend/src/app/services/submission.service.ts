@@ -27,6 +27,13 @@ export class SubmissionService {
     return this.http.get(`${URL}/search?q=${term}`);
   }
 
+  update(id: string, payload: any): Observable<any> {
+    let np = {...payload.value};
+    np.ingredients = JSON.stringify(payload.value.ingredients);
+    
+    return this.http.post(`${URL}/${id}`, np);
+  }
+
   submit(payload: any): Observable<any> {
     const formData: any = new FormData();
     formData.append('image', payload.get('image')!.value);
