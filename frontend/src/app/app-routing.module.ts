@@ -10,9 +10,13 @@ import { RegisterComponent } from './components/register/register.component';
 import { SearchPageComponent } from './components/search-page/search-page.component';
 import { AuthGuard } from './guards/auth.guard';
 import { GuestGuard } from './guards/guest.guard';
+import { AboutPageComponent } from './views/about-page/about-page.component';
+import { ContactPageComponent } from './views/contact-page/contact-page.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, },
+  { path: 'about', component: AboutPageComponent, },
+  { path: 'contact', component: ContactPageComponent, },
   { path: 'login', component: LoginComponent, canActivate: [GuestGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [GuestGuard] },
   { path: 'create', component: CreateComponent, canActivate: [AuthGuard] },

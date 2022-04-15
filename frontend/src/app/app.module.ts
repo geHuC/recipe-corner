@@ -22,6 +22,9 @@ import { UserDropdownComponent } from './components/user-dropdown/user-dropdown.
 import { FeedPageComponent } from './components/feed-page/feed-page.component';
 import { TextboxCounterComponent } from './components/textbox-counter/textbox-counter.component';
 import { FavouriteBtnComponent } from './components/favourite-btn/favourite-btn.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { AboutPageComponent } from './views/about-page/about-page.component';
+import { ContactPageComponent } from './views/contact-page/contact-page.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +42,9 @@ import { FavouriteBtnComponent } from './components/favourite-btn/favourite-btn.
     FeedPageComponent,
     TextboxCounterComponent,
     FavouriteBtnComponent,
+    FooterComponent,
+    AboutPageComponent,
+    ContactPageComponent,
   ],
   imports: [
     BrowserModule,
