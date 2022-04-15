@@ -109,4 +109,9 @@
 }
 .fav{
     width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+:host ::ng-deep .fav svg{
+    fill: white;
 }
