@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 const USER_KEY = 'user';
 const TOKEN_KEY = 'token';
@@ -10,9 +11,11 @@ let storedToken: string = '';
   providedIn: 'root'
 })
 export class TokenStorageService {
+  @Output() avatarChange = new BehaviorSubject<string>(storedUser.avatar);
 
   constructor() { }
   isAuthenticated: boolean = this.getUser()._id ? true : false;
+  userGetter: any = this.getUser();
   public saveToken(token: string): void {
     window.localStorage.removeItem(TOKEN_KEY);
     window.localStorage.setItem(TOKEN_KEY, token);
@@ -43,6 +46,11 @@ export class TokenStorageService {
       return JSON.parse(user);
     }
     return {};
+  }
+  public changeAvatar(url: string) {
+    storedUser = { ...storedUser, avatar: url };
+    this.saveUser(storedUser);
+    this.avatarChange.next(url);
   }
   public loadFromStorage(): void {
     const user = window.localStorage.getItem(USER_KEY);

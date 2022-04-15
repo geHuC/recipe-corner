@@ -11,12 +11,16 @@ export class SubmissionService {
 
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<any> {
-    return this.http.get(`${URL}/`);
+  getAll(type: string, page: number): Observable<any> {
+    return this.http.get(`${URL}/?sortBy=${type}&page=${page}`);
   }
 
-  getFeed(): Observable<any> {
-    return this.http.get(`${URL}/feed`);
+  submitView(id:string):Observable<any>{
+    return this.http.get(`${URL}/view/${id}`);
+  }
+
+  getFeed(sort:string = 'newest'): Observable<any> {
+    return this.http.get(`${URL}/feed?sort=${sort}`);
   }
 
   getSingle(author: string, slug: string): Observable<any> {
@@ -28,9 +32,9 @@ export class SubmissionService {
   }
 
   update(id: string, payload: any): Observable<any> {
-    let np = {...payload.value};
+    let np = { ...payload.value };
     np.ingredients = JSON.stringify(payload.value.ingredients);
-    
+
     return this.http.post(`${URL}/${id}`, np);
   }
 

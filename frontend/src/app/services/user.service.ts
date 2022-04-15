@@ -28,5 +28,12 @@ export class UserService {
   unfollow(username: string): Observable<any> {
     return this.http.get(`${URL}/unfollow/${username}`);
   }
-
+  updateSettings(payload: any): Observable<any> {
+    let fb = new FormData;
+    if (payload.get('image').value) {
+      fb.append('avatar', payload.get('image')!.value);
+    }
+    fb.append('bio',payload.get('bio')!.value)
+    return this.http.put(`${URL}/profile/settings`, fb)
+  }
 }
