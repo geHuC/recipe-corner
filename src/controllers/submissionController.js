@@ -137,16 +137,18 @@ router.post('/', isUser, upload.single('image'), async (req, res) => {
         req.body.thumbUrl = `https://firebasestorage.googleapis.com/v0/b/fanart-central.appspot.com/o/thumbs%2F${req.user.username}%2F${thumbName}?alt=media`;
         const sub = await submissionService.create(req.body);
         userService.pushToField(req.user._id, sub._id, 'submissions');
+        sub.author = { username: sub.author.username, avatarUrl: sub.author.avatar, followers: sub.author.followers };
         res.status(201).json(sub)
     } catch (error) {
         res.status(500).json({ error })
         console.log(error);
     }
 })
-router.patch('/:id', isUser, async (req, res) => {
+router.post('/:id', isUser, async (req, res) => {
     try {
-        req.body.slug = `${slugify(req.body.title, { lower: true, strict: true, trim: true })}-${req.body.slug.split('-').slice(-1)[0]}`;
-        req.body.tags = JSON.parse(req.body.tags);
+        let count = await submissionService.getCount();
+        req.body.slug = slugify(req.body.title, { lower: true, strict: true, trim: true }) + `-${Date.now().toString().slice(7, 12)}${count + 1}`;
+        req.body.ingredients = JSON.parse(req.body.ingredients);
         let sub = await submissionService.updateOne(req.params.id, req.user._id, req.body);
         sub.author = { username: sub.author.username, avatarUrl: sub.author.avatar, followers: sub.author.followers };
         res.status(200).json(sub);
