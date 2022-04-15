@@ -5,8 +5,9 @@ export interface IRecipeMini {
     thumbUrl: string;
     ingredients: any;
     author: any;
-    steps: any;
+    instructions: string;
     description: string;
+    category: string;
     favourites: any;
     preptime: number;
     cooktime: number;
