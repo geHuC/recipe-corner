@@ -1,6 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, FormControl, Validators, AbstractControl } from '@angular/forms'
+import { FormBuilder, FormGroup, FormArray, Validators, AbstractControl } from '@angular/forms'
+import { Router } from '@angular/router';
 import { SubmissionService } from 'src/app/services/submission.service';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 
 @Component({
   selector: 'app-create',
@@ -14,12 +16,12 @@ export class CreateComponent implements OnInit {
   serverErrorMsg: any = {};
 
   @ViewChild('imgBtn') imgBtn!: ElementRef;
-  constructor(private fb: FormBuilder, private ss: SubmissionService) { }
+  constructor(private fb: FormBuilder, private ss: SubmissionService, private storage:TokenStorageService, private router:Router) { }
 
   form: FormGroup = this.fb.group({
     image: [null, { validators: [Validators.required] }],
     title: ['', { validators: [Validators.required, Validators.minLength(10)], updateOn: 'blur' }],
-    instructions: ['', { validators: [Validators.required, Validators.minLength(10), Validators.maxLength(500)], updateOn: 'blur' }],
+    instructions: ['', { validators: [Validators.required, Validators.minLength(10), Validators.maxLength(1000)], updateOn: 'blur' }],
     category: ['', { validators: [Validators.required], updateOn: 'blur' }],
     description: ['', { validators: [Validators.required, Validators.minLength(10)], updateOn: 'blur' }],
     cooktime: ['', { validators: [Validators.required], updateOn: 'blur' }],
@@ -91,8 +93,7 @@ export class CreateComponent implements OnInit {
     this.form.disable();
     this.ss.submit(this.form).subscribe({
       next: data => {
-        console.log(data);
-      },
+        this.router.navigate(['/recipe', this.storage.getUser().username, data.slug])},
       error: err => {
         console.log(err);
         alert('Something went wrong on our side, please try again later');
