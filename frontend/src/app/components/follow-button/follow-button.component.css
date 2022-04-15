@@ -1,0 +1,17 @@
+.follow-btn{
+    display: flex;
+    align-items: center;
+    gap:0.2em;
+    font-size: small;
+    cursor: pointer;
+}
+.follow-btn:hover .follow{
+    color: var(--clr-accent);
+    fill: var(--clr-accent);
+    font-weight: bold;
+}
+.follow-btn:hover .unfollow{
+    color: tomato;
+    fill: tomato;
+    font-weight: bold;
+}
