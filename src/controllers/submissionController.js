@@ -20,7 +20,7 @@ router.get('/', async (req, res) => {
         }
         const submissions = await submissionService.getAll(queryParams, skip, 20);
 
-        submissions.forEach(x => x.author = { username: x.author.username, avatar: x.author.avatar });
+        submissions.forEach(x => x.author = { username: x.author.username, avatar: x.author.avatar, followers: x.author.followers });
         res.status(200).json(submissions);
     } catch (error) {
         console.log(error);
