@@ -1,0 +1,9 @@
+<div class="user">
+    <div class="avatar">
+        <img [src]="author.avatar" alt="avatar">
+    </div>
+    <div class="author">
+        <div class="name">by <a [routerLink]="['/profile',author.username]">{{author.username}}</a></div>
+        <app-follow-button *ngIf="!isMe" [author]="author"></app-follow-button>
+    </div>
+</div>
