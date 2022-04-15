@@ -53,6 +53,21 @@
 form {
     display: flex;
     flex-direction: column;
-    max-width: 40em;
+    min-width: 50%;
     gap: 2em;
+}
+
+button{
+    padding: 0.50rem;
+    width: 100%;
+    text-transform: uppercase;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    border: none;
+    background: var(--clr-accent);
+    color: var(--clr-logo-text);
+    font-weight: 900;
+    font-size: 1.25rem;
+    letter-spacing: 0.3em;
+    cursor: pointer;
 }

@@ -1,5 +1,5 @@
-<h1>Register</h1>
 <div class="form-container">
+    <h1>Register</h1>
     <form #register="ngForm" name="regiserForm" (ngSubmit)="onSubmit()" [formGroup]="form">
         <div class="input-group">
             <label for="username">Username</label>
@@ -32,7 +32,8 @@
                 <div *ngIf="f['email'].errors['email']">
                     Please enter a valid Email adress.
                 </div>
-            </div><div class="alert-box" *ngIf="serverErrorMsg['email']">
+            </div>
+            <div class="alert-box" *ngIf="serverErrorMsg['email']">
                 <div *ngIf="serverErrorMsg['email']">
                     {{serverErrorMsg['email']}}
                 </div>
