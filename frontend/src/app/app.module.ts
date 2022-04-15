@@ -16,7 +16,7 @@ import { CreateComponent } from './components/create/create.component';
 import { HomeComponent } from './components/home/home.component';
 import { RecipeCardComponent } from './components/recipe-card/recipe-card.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { DetailsPageComponent } from './components/details-page/details-page.component';
+import { DetailsPageComponent } from './views/details-page/details-page.component';
 import { SearchPageComponent } from './components/search-page/search-page.component';
 import { UserDropdownComponent } from './components/user-dropdown/user-dropdown.component';
 import { FeedPageComponent } from './components/feed-page/feed-page.component';
@@ -25,6 +25,8 @@ import { FavouriteBtnComponent } from './components/favourite-btn/favourite-btn.
 import { FooterComponent } from './components/footer/footer.component';
 import { AboutPageComponent } from './views/about-page/about-page.component';
 import { ContactPageComponent } from './views/contact-page/contact-page.component';
+import { AuthorProfileComponent } from './components/author-profile/author-profile.component';
+import { FollowButtonComponent } from './components/follow-button/follow-button.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import { ContactPageComponent } from './views/contact-page/contact-page.componen
     FooterComponent,
     AboutPageComponent,
     ContactPageComponent,
+    AuthorProfileComponent,
+    FollowButtonComponent,
   ],
   imports: [
     BrowserModule,

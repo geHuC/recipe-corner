@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreateComponent } from './components/create/create.component';
-import { DetailsPageComponent } from './components/details-page/details-page.component';
+import { DetailsPageComponent } from './views/details-page/details-page.component';
 import { FeedPageComponent } from './components/feed-page/feed-page.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
