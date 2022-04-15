@@ -17,6 +17,7 @@ export class TextboxCounterComponent implements OnInit {
   counter!: string;
 
   ngOnInit(): void {
+    this.value = this.initialValue;
     this.charachtersCount = this.value ? this.value.length : 0;
     this.counter = `${this.charachtersCount}/${this.maxLength}`;
   }
