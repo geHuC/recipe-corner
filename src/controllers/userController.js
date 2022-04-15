@@ -62,7 +62,7 @@ router.get('/getById/:id', async (req, res) => {
         res.status(500).json({ error })
     }
 })
-router.patch('/profile/settings', isUser, upload.single('avatar'), async (req, res) => {
+router.put('/profile/settings', isUser, upload.single('avatar'), async (req, res) => {
     try {
         if (req.file) {
             const fileType = req.file.mimetype.split('/')[1];

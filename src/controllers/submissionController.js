@@ -109,6 +109,14 @@ router.get('/random', async (req, res) => {
         res.status(500).json({ error })
     }
 })
+router.get('/view/:id', async (req, res) => {
+    try {
+        submissionService.updateViews(req.params.id);
+        res.status(200).json({ok:'view registered'});
+    } catch (error) {
+        res.status(500).json({ error })
+    }
+})
 router.delete('/:id', isUser, async (req, res) => {
     try {
         await submissionService.deleteOne(req.params.id, req.user._id);
