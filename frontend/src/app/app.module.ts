@@ -27,6 +27,8 @@ import { AboutPageComponent } from './views/about-page/about-page.component';
 import { ContactPageComponent } from './views/contact-page/contact-page.component';
 import { AuthorProfileComponent } from './components/author-profile/author-profile.component';
 import { FollowButtonComponent } from './components/follow-button/follow-button.component';
+import { AuthorControlsComponent } from './components/author-controls/author-controls.component';
+import { EditSubmissionComponent } from './components/edit-submission/edit-submission.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,8 @@ import { FollowButtonComponent } from './components/follow-button/follow-button.
     ContactPageComponent,
     AuthorProfileComponent,
     FollowButtonComponent,
+    AuthorControlsComponent,
+    EditSubmissionComponent,
   ],
   imports: [
     BrowserModule,
