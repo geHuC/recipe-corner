@@ -1,0 +1,103 @@
+.settings-container {
+    box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.2);
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 70vh;
+    align-items: center;
+    background: var(--clr-light);
+    color: var(--clr-black);
+}
+.input-group.bio{
+    width: 100%;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    gap: 1rem;
+    margin-top: 2em;
+}
+
+.img-input {
+    display: none;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.image-controls {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    position: relative;
+}
+
+.imagePreview {
+    height: 6em;
+    width: 6em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 0.2em dotted var(--clr-accent);
+    color: var(--clr-accent);
+    font-weight: bold;
+    text-transform: uppercase;
+    overflow: hidden;
+}
+
+.imagePreview.invalid {
+    border: 0.2em dotted tomato;
+    color: tomato;
+}
+
+.imagePreview.invalid svg {
+    fill: tomato;
+}
+
+.imagePreview svg {
+    transition: all 150ms ease-in;
+    fill: var(--clr-accent);
+    opacity: 80%;
+}
+
+.imagePreview:hover svg {
+    transform: scale(1.1);
+    opacity: 100%;
+}
+
+.imagePreview img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+button {
+    cursor: pointer;
+    border: 0;
+    background: var(--clr-accent);
+    color: var(--clr-white);
+    font-weight: 900;
+    width: 100%;
+    font-size: 2rem;
+    opacity: 0.9;
+    transition: all 150ms ease-in;
+}
+
+button:hover {
+    opacity: 1;
+    transform: scale(1.05)
+}
+.user{
+    font-size: 2em;
+    font-style: bold;
+    color: var(--clr-text-light);
+}

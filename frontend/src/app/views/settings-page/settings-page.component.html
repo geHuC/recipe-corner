@@ -1,0 +1,32 @@
+<div *ngIf="!loading" class="settings-container">
+    <form class="settings-form" [formGroup]="form" (ngSubmit)="submit()">
+        <div class="image-controls">
+            <input #imgBtn class="img-input" type="file" accept="image/png, image/jpeg, image/jpg"
+                (change)="showPreview($event)" enctype="multipart/form-data" />
+            <div class="imagePreview" [ngClass]="{'invalid':imgError.type || imgError.size}"
+                *ngIf="imageURL && imageURL !== ''" (click)="selectImg()">
+                <img [src]="imageURL" [alt]="form.value.name">
+            </div>
+            <div class="imagePreview" [ngClass]="{'invalid':imgError.type || imgError.size || submitted}"
+                *ngIf="!imageURL" (click)="selectImg()">
+                <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 24 24" width="2em" fill="#000000">
+                    <path d="M0 0h24v24H0V0z" fill="none" />
+                    <path
+                        d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-4.86 8.86l-3 3.87L9 13.14 6 17h12l-3.86-5.14z" />
+                </svg>
+                <p>avatar</p>
+            </div>
+        </div>
+        <div class="user">{{user.username}}</div>
+        <div class="input-group bio">
+            <label for="bio">Bio:</label>
+            <app-textbox-counter [form]="form" [maxLength]="100"
+                [placeholderValue]="'Your bio goes here'"
+                [initialValue]="user.bio"
+                [control]="'bio'">
+            </app-textbox-counter>
+        </div>
+        <button class="button">SAVE</button>
+    </form>
+</div>
+<app-loader *ngIf="loading"></app-loader>
