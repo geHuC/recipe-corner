@@ -16,7 +16,7 @@ export class TokenStorageService {
   constructor() { }
   isAuthenticated: boolean = this.getUser()._id ? true : false;
   userGetter: any = this.getUser();
-  
+
   public saveToken(token: string): void {
     window.localStorage.removeItem(TOKEN_KEY);
     window.localStorage.setItem(TOKEN_KEY, token);
@@ -34,6 +34,7 @@ export class TokenStorageService {
     storedToken = '';
     storedUser = {};
     this.isAuthenticated = false;
+    this.avatarChange.next('');
   }
   public getToken(): string | null {
     if (storedToken) return storedToken;
