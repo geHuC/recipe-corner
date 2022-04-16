@@ -80,7 +80,7 @@ router.get('/search', async (req, res) => {
     let sortParams = { createdAt: 'asc' };
     const regex = new RegExp(req.query.q, 'i');
     searchParams['$or'] = [{ title: { $regex: regex } }, { category: { $regex: regex } }];
-    //req.query.sort.toLowerCase() === 'oldest' ? sortParams.createdAt = 'asc' : sortParams.createdAt = 'desc';
+    req.query.sort.toLowerCase() === 'oldest' ? sortParams.createdAt = 'asc' : sortParams.createdAt = 'desc';
     try {
         const submissions = await submissionService.searchAll(searchParams, sortParams);
         submissions.forEach(x => x.author = { username: x.author.username, avatar: x.author.avatar });

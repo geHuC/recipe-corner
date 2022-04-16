@@ -1,0 +1,16 @@
+<div class="search-wrapper">
+    <div class="feed-bar">
+        <div class="feed-bar-left">
+            <span class="search-terms">Search terms:</span>
+            <span class="search-item">{{term}}</span>
+        </div>
+        <div class="feed-bar-right">
+            <span>Order by:</span>
+            <button (click)="newestBtnHandler()" class="feed-sort-button"
+                [ngClass]="{'selected':sortType == 'newest'}">Newest</button>
+            <button (click)="popularBtnHandler()" class="feed-sort-button"
+                [ngClass]="{'selected':sortType == 'oldest'}">Oldest</button>
+        </div>
+    </div>
+    <app-card-container [recipes]="recipes"></app-card-container>
+</div>

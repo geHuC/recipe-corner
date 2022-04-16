@@ -30,7 +30,7 @@ router.get('/unfollow/:username', isUser, async (req, res) => {
 
 router.get('/get/:username', async (req, res) => {
     try {
-        const user = await userService.getAndPopulate(req.params.username, [{ path: 'submissions' }, { path: 'favourites', populate: { path: 'author' } }]);
+        const user = await userService.getAndPopulate(req.params.username, [{ path: 'submissions' }, { path: 'favourites', populate: { path: 'author' } },{ path: 'followers' },{ path: 'following' }]);
         if (!user) return res.status(404).json({ msg: 'Not found' });
         user.submissions.forEach(x => x.author = { username: user.username, avatar: user.avatar });
         user.submissions.sort((a, b) => b.createdAt - a.createdAt);

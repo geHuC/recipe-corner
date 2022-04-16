@@ -3,21 +3,23 @@ import { IRecipeMini } from 'src/app/interfaces/irecipe-mini';
 import { SubmissionService } from 'src/app/services/submission.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-feed-page',
+  templateUrl: './feed-page.component.html',
+  styleUrls: ['./feed-page.component.css']
 })
-export class HomeComponent implements OnInit {
-  all: IRecipeMini[] = [];
+export class FeedPageComponent implements OnInit {
+  feed: IRecipeMini[] = [];
   sortType: string = 'newest';
-  page: number = 0;
   constructor(private ss: SubmissionService) { }
 
   ngOnInit(): void {
     this.getData();
   }
   getData():void{
-    this.ss.getAll(this.sortType, this.page).subscribe(data => this.all = data)
+    this.ss.getFeed(this.sortType).subscribe({
+      next: (data) => {this.feed = data},
+      error: (e) => console.log(e)
+    })
   }
   newestBtnHandler() {
     if (this.sortType === 'newest') return;
@@ -29,12 +31,12 @@ export class HomeComponent implements OnInit {
     this.getData();
   }
   popularBtnHandler() {
-    if (this.sortType === 'popular') return;
+    if (this.sortType === 'oldest') return;
     window.scrollTo({
       top: 0,
       left: 0,
     });
-    this.sortType = 'popular';
+    this.sortType = 'oldest';
     this.getData();
   }
 }

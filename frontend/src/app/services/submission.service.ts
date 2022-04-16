@@ -15,11 +15,11 @@ export class SubmissionService {
     return this.http.get(`${URL}/?sortBy=${type}&page=${page}`);
   }
 
-  submitView(id:string):Observable<any>{
+  submitView(id: string): Observable<any> {
     return this.http.get(`${URL}/view/${id}`);
   }
 
-  getFeed(sort:string = 'newest'): Observable<any> {
+  getFeed(sort: string = 'newest'): Observable<any> {
     return this.http.get(`${URL}/feed?sort=${sort}`);
   }
 
@@ -27,8 +27,12 @@ export class SubmissionService {
     return this.http.get(`${URL}/${author}/recipe/${slug}`);
   }
 
-  search(term: string): Observable<any> {
-    return this.http.get(`${URL}/search?q=${term}`);
+  search(term: string, sort: string): Observable<any> {
+    return this.http.get(`${URL}/search?q=${term}&sort=${sort}`);
+  }
+
+  getCategory(category: string, sort: string): Observable<any> {
+    return this.http.get(`${URL}/category/${category}?sortBy=${sort}`);
   }
 
   update(id: string, payload: any): Observable<any> {

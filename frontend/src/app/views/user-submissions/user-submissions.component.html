@@ -1,0 +1,5 @@
+<div *ngIf="!loading" class="submissions-container">
+    <app-profile-bar [user]="user" [label]="'submissions'"></app-profile-bar>
+</div>
+<app-card-container *ngIf="!loading" [recipes]="user.submissions" [message]="'User hasn\' submitted any recipe yet.'"></app-card-container>
+<app-loader *ngIf="loading"></app-loader>

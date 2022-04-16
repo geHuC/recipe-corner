@@ -1,0 +1,11 @@
+<div class="p-latest-submissions">
+    <div class="text">
+        <span>Latest {{type}}:</span>
+        <a *ngIf="length > 0" [routerLink]="['/profile/',userData.username,type]" [state]="userData">(see all)</a>
+    </div>
+    <div class="p-latest-submissions-row">
+        <app-recipe-card *ngFor="let one of lastFive" [recipe]="one"></app-recipe-card>
+        <div *ngIf="length == 0" class="p-latest-submissions-nothing">{{userData.username}} doesn't have
+            any {{type}} yet.</div>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+.profile-data {
+    display: flex;
+    width: 100%;
+}
+
+.pd-label {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 3rem;
+    justify-content: flex-end;
+    color: var(--clr-text-light);
+}
+
+.pd-user-info {
+    display: flex;
+    gap: 1rem;
+    flex: 1;
+}
+
+.pd-left img {
+    width: 4rem;
+    height: 4rem;
+    object-fit: cover;
+}
+
+.pd-name-container {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.pd-username {
+    letter-spacing: 0.2rem;
+    font-size: large;
+}
+
+.pd-name-container a {
+    display: flex;
+    text-decoration: none;
+    color: var(--clr-text-light);
+    font-weight: 300;
+    font-size: .8rem;
+    align-items: center;
+    gap: 0.2rem;
+}
+.pd-username a{
+    letter-spacing: 0.2rem;
+    font-size: large;
+}
+.pd-name-container a svg {
+    color: var(--clr-text-light);
+}
+.gear{
+    width: 1em;
+    height: 1em;
+}
+.pd-name-container a:hover,
+.pd-name-container a:hover svg {
+    color: var(--clr-accent);
+    fill: var(--clr-accent)
+}
+.pd-full-name{
+    color: var(--clr-black);
+}
+.pd-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.pd-statistics {
+    font-weight: 300;
+    font-size: 0.8rem;
+    display: flex;
+    gap: 1rem;
+    color: var(--clr-black)
+}

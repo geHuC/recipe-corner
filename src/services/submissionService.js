@@ -19,7 +19,7 @@ const getAllMatching = async (array, sortParams = { createdAt: 'desc' }) => {
     return Submission.find({ 'author': { $in: array } }).populate('author').sort(sortParams).lean();
 }
 const getTagged = async (tag, sortParams = { createdAt: 'desc' }) => {
-    return Submission.find({ 'tags': tag }).populate('author').sort(sortParams).lean();
+    return Submission.find({ 'category': tag }).populate('author').sort(sortParams).lean();
 }
 
 const getOne = async (slug) => {

@@ -20,7 +20,7 @@ export class FollowButtonComponent implements OnInit {
   }
 
   follow(): void {
-    if (!this.storage.isAuthenticated) this.router.navigate(['/']);
+    if (!this.storage.isAuthenticated) this.router.navigate(['/login']);
     this.us.follow(this.author.username).subscribe({
       next: data => { this.following = true },
       error: (e) => console.log(e)

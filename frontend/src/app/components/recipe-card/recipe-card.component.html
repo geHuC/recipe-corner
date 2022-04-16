@@ -1,8 +1,7 @@
 <div class="recipe-card">
     <a class="card-link" [routerLink]="recipeUrl" [state]="recipe"></a>
     <div class="img-container">
-        <!-- <img [src]="recipe.thumbUrl" /> -->
-        <img src="/assets/fish.jpg" />
+        <img [src]="recipe.thumbUrl" />
     </div>
     <div class="info">
         <p class="title">{{recipe.title}}</p>
@@ -41,11 +40,10 @@
             <div class="user-details">
                 <div class="yad">
                     <div class="avatar-container">
-                        <!-- <img [src]="recipe.author.avatar"> -->
-                        <img src="/assets/noAvatar.png" />
+                        <img [src]="recipe.author.avatar">
                     </div>
                     <span class="user-link"><a class="user-link"
-                            [routerLink]="['user',recipe.author.username]">{{recipe.author.username}}</a></span>
+                            [routerLink]="['/profile',recipe.author.username]">{{recipe.author.username}}</a></span>
                             <span class="fav"><app-favourite-btn [recipe]="recipe"></app-favourite-btn></span>
                 </div>
             </div>

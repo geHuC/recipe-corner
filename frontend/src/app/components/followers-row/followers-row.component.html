@@ -1,0 +1,19 @@
+<div class='followers-row'>
+    <div class="followers-row-text-container">
+        <span class="followers-row-text">{{text}}:</span>
+        <span class="followers-row-count">{{followers.length}}</span>
+    </div>
+    <div class="followers-row-card-container">
+        <div *ngFor="let one of slice" class='follower-card'>
+            <a class='follower-card-link' [routerLink]="['/profile',one.username]"></a>
+            <div class="follower-card-left">
+                <div class="follower-card-img-container">
+                    <img [src]="one.avatar" alt="avatar" />
+                </div>
+            </div>
+            <div class="follower-card-right">
+                <span class="bold">{{one.username}}</span>
+            </div>
+        </div>
+    </div>
+</div>

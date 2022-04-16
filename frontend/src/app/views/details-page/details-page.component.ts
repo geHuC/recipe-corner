@@ -14,6 +14,7 @@ export class DetailsPageComponent implements OnInit {
   private author!: string;
   private slug!: string;
   isAuthor: boolean = false;
+  similar: any;
 
   constructor(private route: ActivatedRoute, private ss: SubmissionService, private router: Router, private storage: TokenStorageService) { }
 
@@ -21,7 +22,7 @@ export class DetailsPageComponent implements OnInit {
     this.author = this.route.snapshot.paramMap.get('author') || '';
     this.slug = this.route.snapshot.paramMap.get('slug') || '';
     this.isAuthor = this.storage.getUser().username === this.author;
-    
+
     let state = history.state;
     if (state._id) {
       this.recipe = state;

@@ -1,0 +1,8 @@
+<div class="feed-container">
+    <div class="feed-sort-bar">
+    <span>Order by:</span>
+    <button (click)="newestBtnHandler()" class="feed-sort-button" [ngClass]="{'selected':sortType == 'newest'}">Newest</button>
+    <button (click)="popularBtnHandler()" class="feed-sort-button" [ngClass]="{'selected':sortType == 'oldest'}">Oldest</button>
+</div>
+    <app-card-container [recipes]="feed"></app-card-container>
+</div>

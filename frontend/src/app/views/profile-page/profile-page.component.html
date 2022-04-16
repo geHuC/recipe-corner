@@ -1,0 +1,18 @@
+<div *ngIf="!loading" class="profile-container">
+    <app-profile-bar [user]="user" style="width: 100%;"></app-profile-bar>
+    <app-submission-row [userData]="user" [type]="'submissions'"></app-submission-row>
+    <app-submission-row [userData]="user" [type]="'favourites'"></app-submission-row>
+    <div class="profile-container-bottom">
+        <div class="profile-container-bottom-left">
+            <app-followers-row [followers]="user.followers" [text]="'Followers'"></app-followers-row>
+            <app-followers-row [followers]="user.following" [text]="'Following'"></app-followers-row>
+        </div>
+        <div class="profile-container-bottom-right">
+            <span>Bio:</span>
+            <div class="profile-container-bottom-right-bio">
+                {{user.bio}}
+            </div>
+        </div>
+    </div>
+</div>
+<app-loader *ngIf="loading"></app-loader>

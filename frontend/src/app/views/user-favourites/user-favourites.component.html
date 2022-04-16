@@ -1,0 +1,5 @@
+<div *ngIf="!loading" class="favourites-container">
+    <app-profile-bar [user]="user" [label]="'favourites'"></app-profile-bar>
+</div>
+<app-card-container *ngIf="!loading" [recipes]="user.favourites" [message]="'User hasn\' favourited any recipe yet.'"></app-card-container>
+<app-loader *ngIf="loading"></app-loader>

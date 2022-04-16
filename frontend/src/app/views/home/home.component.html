@@ -1,0 +1,13 @@
+<div class="home-wrapper">
+    <div class="home-sort-bar">
+        <span>Order by:</span>
+        <button (click)="newestBtnHandler()" class="home-sort-button"
+            [ngClass]="{'selected':sortType == 'newest'}">Newest</button>
+        <button (click)="popularBtnHandler()" class="home-sort-button"
+            [ngClass]="{'selected':sortType == 'popular'}">Popular</button>
+    </div>
+    <app-card-container *ngIf="!loading" [recipes]="all" style="width: 100%;" (pageEvent)="changePage()"
+        [pagination]="true" [stopPaging]="stopPaging">
+    </app-card-container>
+    <app-loader *ngIf="loading"></app-loader>
+</div>
