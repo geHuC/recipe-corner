@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-const URL = 'http://localhost:3030/api/v1/users';
+const URL = 'https://recipecorner.herokuapp.com/api/v1/users';
 
 @Injectable({
   providedIn: 'root'
