@@ -17,10 +17,11 @@ export class UserDropdownComponent implements OnInit {
   subscription!: Subscription;
   ngOnInit(): void {
     this.user = this.storage.getUser();
-    this.avatar = this.user.avatar;
+    this.avatar = this.storage.getUser().avatar;
     this.subscription = this.storage.avatarChange.subscribe(data => data ? this.avatar = data : null);
   }
   logout(): void {
+    this.avatar = '';
     this.auth.logout();
   }
   toggleMenu(): void {
